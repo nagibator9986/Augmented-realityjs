@@ -10,6 +10,9 @@
         body {
             margin: 0;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         #loading {
             position: absolute;
@@ -22,17 +25,28 @@
             font-size: 24px;
             color: black;
         }
+        #marker {
+            margin-top: 20px;
+            max-width: 90%;
+        }
+        #scene-container {
+            position: relative;
+            width: 100%;
+            height: calc(100vh - 120px);
+        }
     </style>
 </head>
 <body>
     <div id="loading">Loading, please wait...</div>
-    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
-        <!-- Используйте свой собственный маркер -->
-        <a-marker type="pattern" url="./markers/pattern-marker.patt">
-            <a-entity gltf-model="url(./models/AWP.glb)" scale="0.5 0.5 0.5" position="0 0 0" rotation="0 90 0"></a-entity>
-        </a-marker>
-        <a-entity camera></a-entity>
-    </a-scene>
+    <div id="scene-container">
+        <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+            <a-marker type="pattern" url="./markers/pattern-marker.patt">
+                <a-entity gltf-model="url(./models/AWP.glb)" scale="0.5 0.5 0.5" position="0 0 0" rotation="0 90 0"></a-entity>
+            </a-marker>
+            <a-entity camera></a-entity>
+        </a-scene>
+    </div>
+    <img id="marker" src="./markers/pattern-marker.png" alt="AR Marker">
     <script>
         window.addEventListener('arjs-video-loaded', () => {
             const loading = document.getElementById('loading');
