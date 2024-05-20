@@ -19,15 +19,32 @@
             margin-bottom: 20px;
         }
     </style>
+    <script>
+        function isMobile() {
+            return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        }
+
+        function loadAR() {
+            if (isMobile()) {
+                document.getElementById('ar-scene').style.display = 'block';
+                document.getElementById('marker-image').style.display = 'none';
+            } else {
+                document.getElementById('ar-scene').style.display = 'none';
+                document.getElementById('marker-image').style.display = 'block';
+            }
+        }
+
+        window.onload = loadAR;
+    </script>
 </head>
 <body>
     <!-- Display the marker image -->
-    <div class="marker-image">
+    <div id="marker-image" class="marker-image">
         <img src="markers/markerr.png" alt="Pattern Marker" width="200">
     </div>
     
     <!-- AR Scene -->
-    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+    <a-scene id="ar-scene" embedded arjs="sourceType: webcam; debugUIEnabled: false;" style="display: none;">
         <!-- Custom Marker -->
         <a-marker type="pattern" url="markers/markerr.patt">
             <!-- 3D Model -->
@@ -37,3 +54,4 @@
     </a-scene>
 </body>
 </html>
+
