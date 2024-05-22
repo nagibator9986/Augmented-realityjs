@@ -50,7 +50,7 @@
         <!-- Маркер -->
         <a-marker type="pattern" url="markers/pattern-marker.patt">
             <!-- 3D модель с добавлением возможностей для взаимодействия -->
-            <a-entity id="cartoon-model" gltf-model="url(models/ibm_5110)" scale="0.5 0.5 0.5" position="0 0 0"
+            <a-entity id="cartoon-model" gltf-model="url(models/cartoon.glb)" scale="0.5 0.5 0.5" position="0 0 0"
                       rotation="0 0 0"
                       gesture-handler>
             </a-entity>
@@ -59,7 +59,7 @@
     </a-scene>
 
     <!-- Отображение изображения маркера для удобства -->
-    <div class="marker-container">
+    <div class="marker-container" id="marker-container">
         <img src="markers/pattern-marker.png" alt="Pattern Marker">
         <p>Наведите камеру на это изображение</p>
     </div>
@@ -121,6 +121,11 @@
                 }
             }
         });
+
+        // Скрытие маркера через 5 секунд
+        setTimeout(() => {
+            document.getElementById('marker-container').style.display = 'none';
+        }, 5000); // 5000 миллисекунд = 5 секунд
     </script>
 </body>
 </html>
